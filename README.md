@@ -1,4 +1,6 @@
-# Getting Started with ViteJS, Ionic Framework v6 And VueJS
+# Render Queue and timings Ionic with Vue 3 + Pinia + Router
+
+![](splash.png)
 
 ## Documentation
 

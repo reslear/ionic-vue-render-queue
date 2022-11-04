@@ -46,10 +46,15 @@ import {
 import { useMainStore } from '../stores/main.store'
 
 import { removeOutline, addOutline } from 'ionicons/icons'
-
+import { onMounted } from 'vue'
+import { log } from '../log'
 const mainStore = useMainStore()
 
-console.log('Home.vue setup')
+log(' 🏠 Home.vue setup')
+
+onMounted(() => {
+  log(' 🏠 Home.vue onMounted')
+})
 </script>
 
 <style>

@@ -1,8 +1,9 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref, readonly } from 'vue'
+import { log } from '../log'
 
 export const useMainStore = defineStore('main', () => {
-  console.log('store: created')
+  log('🍍 define pinia')
 
   const count = ref(0)
 
