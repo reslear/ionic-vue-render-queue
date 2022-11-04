@@ -1,7 +1,9 @@
-import { defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref, readonly } from 'vue'
 
 export const useMainStore = defineStore('main', () => {
+  console.log('store: created')
+
   const count = ref(0)
 
   function increment() {
@@ -20,3 +22,7 @@ export const useMainStore = defineStore('main', () => {
     decrement,
   }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useMainStore, import.meta.hot))
+}

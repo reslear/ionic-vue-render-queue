@@ -48,6 +48,8 @@ import { useMainStore } from '../stores/main.store'
 import { removeOutline, addOutline } from 'ionicons/icons'
 
 const mainStore = useMainStore()
+
+console.log('Home.vue setup')
 </script>
 
 <style>

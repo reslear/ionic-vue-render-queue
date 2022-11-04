@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, ref } from 'vue'
 import { IonicVue } from '@ionic/vue'
 import { createPinia } from 'pinia'
 
@@ -23,10 +23,26 @@ import '@ionic/vue/css/display.css'
 
 /* Theme variables */
 import './theme/variables.css'
+import { useMainStore } from './stores/main.store'
 
 const pinia = createPinia()
 const app = createApp(App).use(IonicVue).use(router).use(pinia)
 
+// https://stackoverflow.com/a/72916673
+const inc = ref(0)
+
+inc.value++
+
+console.log('main: before useMainStore - ' + inc.value)
+
+// https://pinia.vuejs.org/core-concepts/outside-component-usage.html#single-page-applications
+const mainStore = useMainStore()
+
+console.log('main: before router is ready')
+
 router.isReady().then(() => {
+  console.log(`main: store - ${mainStore.title}`)
+  console.log('main: before app mount')
   app.mount('#app')
+  console.log('main: after app mount')
 })
