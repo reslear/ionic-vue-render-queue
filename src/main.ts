@@ -27,6 +27,7 @@ import '@ionic/vue/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 import { useMainStore } from './stores/main.store'
+import * as hooks from './composables/useAppHooks'
 
 // https://stackoverflow.com/a/72916673
 const inc = ref(0)
@@ -36,6 +37,7 @@ log('💚 ref before create Vue app - ' + inc.value)
 
 const pinia = createPinia()
 
+// create app
 log(`💚 before create app`)
 const app = createApp(App).use(IonicVue).use(router).use(pinia)
 log(`💚 app created`)
@@ -44,10 +46,16 @@ log(`💚 app created`)
 const mainStore = useMainStore()
 log(`🍍 ${mainStore.title}`)
 
+// before init hook
+log('🪝 beforeMountApp start')
+await hooks.beforeAppReady()
+
+// router
 log('🛣️ before ready')
-router.isReady().then(() => {
-  log(`🛣️ ready`)
-  log('🔨 before mount')
-  app.mount('#app')
-  log('🔨 mounted')
-})
+await router.isReady()
+log(`🛣️ ready`)
+
+// mount app
+log('🔨 before mount')
+app.mount('#app')
+log('🔨 mounted')
